@@ -1,11 +1,187 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Ride & Care</title>
 </head>
+
 <body>
 
+    <header>
+        <h1>Ride & Care</h1>
+
+        <p>
+            Halaman sederhana tentang motor saya, perawatan motor,
+            dan catatan penggunaan sehari-hari.
+        </p>
+
+        <nav aria-label="Navigasi utama">
+            <ul>
+                <li><a href="#profil-motor">Profil Motor</a></li>
+                <li><a href="#perawatan">Perawatan</a></li>
+                <li><a href="#catatan">Catatan Penggunaan</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- BAGIAN PROFIL MOTOR -->
+        <section id="profil-motor">
+
+            <h2>Profil Motor</h2>
+
+            <p>
+                Bagian ini berisi informasi singkat mengenai motor
+                yang saya gunakan sehari-hari.
+            </p>
+
+            <img
+                src="Motor.jpg"
+                alt="Motor yang saya gunakan"
+                width="400"
+                height="600"
+                loading="lazy"
+                style="object-fit: cover;"
+            >
+
+            <p>
+                Motor yang saya gunakan adalah motor matic untuk
+                kebutuhan sehari-hari.
+            </p>
+
+        </section>
+
+
+        <!-- BAGIAN PERAWATAN -->
+        <section id="perawatan">
+
+            <h2>Perawatan Motor</h2>
+
+            <p>
+                Saya mencatat perawatan motor supaya lebih mudah
+                mengingat kapan terakhir kali melakukan perawatan.
+            </p>
+
+            <!-- TABEL PERAWATAN -->
+            <table border="1">
+
+                <caption>
+                    Daftar Perawatan Motor
+                </caption>
+
+                <thead>
+                    <tr>
+                        <th scope="col">Komponen</th>
+                        <th scope="col">Perawatan</th>
+                        <th scope="col">Keterangan</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <th scope="row">Oli Mesin</th>
+                        <td>Ganti oli</td>
+                        <td>Dilakukan secara berkala</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Ban</th>
+                        <td>Cek tekanan</td>
+                        <td>Dicek sebelum digunakan</td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Rem</th>
+                        <td>Cek kampas rem</td>
+                        <td>Memastikan rem masih aman</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+
+        <!-- BAGIAN CATATAN -->
+        <section id="catatan">
+
+            <h2>Catatan Penggunaan</h2>
+
+            <p>
+                Bagian ini digunakan untuk mencatat perawatan yang
+                sudah dilakukan pada motor.
+            </p>
+
+            <form>
+
+                <div>
+                    <label for="nama-perawatan">
+                        Nama Perawatan
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama-perawatan"
+                        name="nama-perawatan"
+                        required
+                    >
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="tanggal">
+                        Tanggal
+                    </label>
+
+                    <input
+                        type="date"
+                        id="tanggal"
+                        name="tanggal"
+                        required
+                    >
+                </div>
+
+                <br>
+
+                <div>
+                    <label for="keterangan">
+                        Keterangan
+                    </label>
+
+                    <textarea
+                        id="keterangan"
+                        name="keterangan"
+                        rows="4"
+                        required
+                    ></textarea>
+                </div>
+
+                <br>
+
+                <button type="submit">
+                    Simpan Catatan
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>
+            RAIHAN ATHAILLAH · 25523249 · 2026
+        </p>
+    </footer>
+
 </body>
+
 </html>
