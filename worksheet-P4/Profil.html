@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ride & Care</title>
+
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="komponen.css">
+    <link rel="stylesheet" href="tema.css">
+</head>
+
+<body>
+
+<header>
+
+    <div class="header-baris">
+
+        <h1>Ride & Care</h1>
+
+        <nav aria-label="Navigasi utama">
+            <ul>
+
+                <li>
+                    <a href="#profil-motor">
+                        Profil Motor
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#perawatan">
+                        Perawatan
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#catatan">
+                        Catatan Penggunaan
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+
+    <p>
+        Halaman sederhana tentang motor saya,
+        perawatan motor, dan catatan penggunaan sehari-hari.
+    </p>
+
+
+    <!-- PENGALIH TEMA -->
+
+    <div class="pengalih-tema">
+
+        <input
+            type="checkbox"
+            id="tema"
+            class="pengalih-tema-input"
+        >
+
+        <label
+            for="tema"
+            class="tombol-tema"
+        >
+
+            <span class="teks-gelap">
+                🌙 Mode Gelap
+            </span>
+
+            <span class="teks-terang">
+                ☀️ Mode Terang
+            </span>
+
+        </label>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- =========================
+         PROFIL MOTOR
+         ========================= -->
+
+    <section id="profil-motor">
+
+        <h2>Profil Motor</h2>
+
+        <p>
+            Bagian ini berisi informasi singkat mengenai
+            motor yang saya gunakan sehari-hari.
+        </p>
+
+
+        <img
+            src="Motor.JPG"
+            alt="Motor yang saya gunakan"
+            width="400"
+            height="600"
+            loading="lazy"
+        >
+
+
+        <p>
+            Motor yang saya gunakan adalah motor matic
+            untuk kebutuhan sehari-hari.
+        </p>
+
+    </section>
+
+
+    <!-- =========================
+         PERAWATAN MOTOR
+         ========================= -->
+
+    <section id="perawatan">
+
+        <h2>Perawatan Motor</h2>
+
+        <p>
+            Saya mencatat perawatan motor supaya lebih mudah
+            mengingat kapan terakhir kali melakukan perawatan.
+        </p>
+
+
+        <!-- KATALOG KARTU -->
+
+        <div class="katalog">
+
+            <article class="kartu">
+
+                <h3>Oli Mesin</h3>
+
+                <p>
+                    <strong>Perawatan:</strong>
+                    Ganti oli
+                </p>
+
+                <p>
+                    <strong>Keterangan:</strong>
+                    Dilakukan secara berkala
+                </p>
+
+            </article>
+
+
+            <article class="kartu">
+
+                <h3>Ban</h3>
+
+                <p>
+                    <strong>Perawatan:</strong>
+                    Cek tekanan
+                </p>
+
+                <p>
+                    <strong>Keterangan:</strong>
+                    Dicek sebelum digunakan
+                </p>
+
+            </article>
+
+
+            <article class="kartu">
+
+                <h3>Rem</h3>
+
+                <p>
+                    <strong>Perawatan:</strong>
+                    Cek kampas rem
+                </p>
+
+                <p>
+                    <strong>Keterangan:</strong>
+                    Memastikan rem masih aman
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATATAN PENGGUNAAN
+         ========================= -->
+
+    <section id="catatan">
+
+        <h2>Catatan Penggunaan</h2>
+
+        <p>
+            Bagian ini digunakan untuk mencatat perawatan
+            yang sudah dilakukan pada motor.
+        </p>
+
+
+        <form id="form-catatan">
+
+            <!-- NAMA PERAWATAN -->
+
+            <div class="form-kolom">
+
+                <label for="nama-perawatan">
+                    Nama Perawatan
+                </label>
+
+
+                <input
+                    type="text"
+                    id="nama-perawatan"
+                    name="nama-perawatan"
+                    placeholder="Contoh: Ganti oli"
+                    required
+                >
+
+
+                <p class="pesan-galat">
+                    ⚠ Nama perawatan salah.
+                    Silakan ketik ulang sesuai kartu.
+                </p>
+
+            </div>
+
+
+            <!-- TANGGAL -->
+
+            <div class="form-kolom">
+
+                <label for="tanggal">
+                    Tanggal
+                </label>
+
+
+                <input
+                    type="date"
+                    id="tanggal"
+                    name="tanggal"
+                    required
+                >
+
+
+                <p class="pesan-galat">
+                    ⚠ Tanggal wajib diisi.
+                </p>
+
+            </div>
+
+
+            <!-- KETERANGAN -->
+
+            <div class="form-kolom">
+
+                <label for="keterangan">
+                    Keterangan
+                </label>
+
+
+                <textarea
+                    id="keterangan"
+                    name="keterangan"
+                    rows="4"
+                    placeholder="Contoh: Dilakukan secara berkala"
+                    required
+                ></textarea>
+
+
+                <p class="pesan-galat">
+                    ⚠ Keterangan salah.
+                    Silakan ketik ulang sesuai kartu.
+                </p>
+
+            </div>
+
+
+            <button type="submit">
+                Simpan Catatan
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        RAIHAN ATHAILLAH · 25523249 · 2026
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     VALIDASI FORM
+     ========================= -->
+
+<script>
+
+const form =
+    document.getElementById("form-catatan");
+
+const namaPerawatan =
+    document.getElementById("nama-perawatan");
+
+const tanggal =
+    document.getElementById("tanggal");
+
+const keterangan =
+    document.getElementById("keterangan");
+
+
+/*
+    Data harus sama dengan
+    data yang terdapat pada kartu.
+*/
+
+const dataPerawatan = [
+
+    {
+        nama: "Ganti oli",
+        keterangan: "Dilakukan secara berkala"
+    },
+
+    {
+        nama: "Cek tekanan",
+        keterangan: "Dicek sebelum digunakan"
+    },
+
+    {
+        nama: "Cek kampas rem",
+        keterangan: "Memastikan rem masih aman"
+    }
+
+];
+
+
+form.addEventListener("submit", function(event) {
+
+    const nama =
+        namaPerawatan.value.trim();
+
+    const ket =
+        keterangan.value.trim();
+
+
+    /*
+        Cari data berdasarkan
+        nama perawatan.
+    */
+
+    const dataNama =
+        dataPerawatan.find(function(data) {
+
+            return data.nama === nama;
+
+        });
+
+
+    /*
+        Cari data berdasarkan
+        keterangan.
+    */
+
+    const dataKeterangan =
+        dataPerawatan.find(function(data) {
+
+            return data.keterangan === ket;
+
+        });
+
+
+    /*
+        Reset validasi sebelumnya.
+    */
+
+    namaPerawatan.setCustomValidity("");
+
+    keterangan.setCustomValidity("");
+
+
+    /*
+        NAMA DAN KETERANGAN BENAR
+        serta merupakan pasangan
+        yang benar.
+    */
+
+    if (
+        dataNama &&
+        dataNama.keterangan === ket
+    ) {
+
+        alert("Catatan berhasil disimpan.");
+
+        return;
+
+    }
+
+
+    /*
+        NAMA BENAR
+        tetapi KETERANGAN SALAH.
+    */
+
+    if (dataNama) {
+
+        event.preventDefault();
+
+        keterangan.setCustomValidity(
+            "Keterangan salah. Silakan ketik ulang sesuai kartu."
+        );
+
+        form.reportValidity();
+
+        return;
+
+    }
+
+
+    /*
+        NAMA SALAH
+        tetapi KETERANGAN BENAR.
+    */
+
+    if (dataKeterangan) {
+
+        event.preventDefault();
+
+        namaPerawatan.setCustomValidity(
+            "Nama perawatan salah. Silakan ketik ulang sesuai kartu."
+        );
+
+        form.reportValidity();
+
+        return;
+
+    }
+
+
+    /*
+        NAMA DAN KETERANGAN
+        SAMA-SAMA SALAH.
+    */
+
+    event.preventDefault();
+
+    namaPerawatan.setCustomValidity(
+        "Nama perawatan salah. Silakan ketik ulang sesuai kartu."
+    );
+
+    keterangan.setCustomValidity(
+        "Keterangan salah. Silakan ketik ulang sesuai kartu."
+    );
+
+    form.reportValidity();
+
+});
+
+
+/*
+    Kalau nama mulai diketik ulang,
+    hapus validasi nama sebelumnya.
+*/
+
+namaPerawatan.addEventListener(
+    "input",
+    function() {
+
+        namaPerawatan.setCustomValidity("");
+
+    }
+);
+
+
+/*
+    Kalau keterangan mulai diketik ulang,
+    hapus validasi keterangan sebelumnya.
+*/
+
+keterangan.addEventListener(
+    "input",
+    function() {
+
+        keterangan.setCustomValidity("");
+
+    }
+);
+
+</script>
+
+</body>
+</html>

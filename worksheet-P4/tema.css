@@ -1,0 +1,127 @@
+.pengalih-tema {
+    margin-top: var(--space-3);
+}
+
+.pengalih-tema-input {
+    position: absolute;
+    opacity: 0;
+}
+
+.tombol-tema {
+    display: inline-block;
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    color: var(--color-fg);
+    cursor: pointer;
+}
+
+.tombol-tema:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.pengalih-tema-input:focus-visible + .tombol-tema {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+.teks-gelap {
+    display: inline;
+}
+
+.teks-terang {
+    display: none;
+}
+
+
+/* ============================= */
+/* TEMA GELAP DARI WINDOWS       */
+/* ============================= */
+
+@media (prefers-color-scheme: dark) {
+
+    :root {
+        --color-bg: #0F172A;
+        --color-fg: #E2E8F0;
+        --color-surface: #1E293B;
+        --color-border: #64748B;
+        --color-primary: #93C5FD;
+        --color-danger: #FCA5A5;
+        --color-focus: #FACC15;
+        --shadow-1: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.5);
+    }
+
+    .teks-gelap {
+        display: none;
+    }
+
+    .teks-terang {
+        display: inline;
+    }
+
+    input[type="date"] {
+        color-scheme: dark;
+    }
+}
+
+
+/* ============================= */
+/* TOMBOL MANUAL                 */
+/* ============================= */
+
+/* Jika Windows LIGHT → klik tombol = DARK */
+@media (prefers-color-scheme: light) {
+
+    :root:has(#tema:checked) {
+        --color-bg: #0F172A;
+        --color-fg: #E2E8F0;
+        --color-surface: #1E293B;
+        --color-border: #64748B;
+        --color-primary: #93C5FD;
+        --color-danger: #FCA5A5;
+        --color-focus: #FACC15;
+        --shadow-1: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.5);
+    }
+
+    :root:has(#tema:checked) .teks-gelap {
+        display: none;
+    }
+
+    :root:has(#tema:checked) .teks-terang {
+        display: inline;
+    }
+
+    :root:has(#tema:checked) input[type="date"] {
+        color-scheme: dark;
+    }
+}
+
+
+/* Jika Windows DARK → klik tombol = LIGHT */
+@media (prefers-color-scheme: dark) {
+
+    :root:has(#tema:checked) {
+        --color-bg: var(--cream-50);
+        --color-fg: var(--black);
+        --color-surface: var(--white);
+        --color-border: var(--cream-200);
+        --color-primary: var(--blue-500);
+        --color-danger: var(--red-700);
+        --color-focus: var(--blue-500);
+        --shadow-1: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.12);
+    }
+
+    :root:has(#tema:checked) .teks-gelap {
+        display: inline;
+    }
+
+    :root:has(#tema:checked) .teks-terang {
+        display: none;
+    }
+
+    :root:has(#tema:checked) input[type="date"] {
+        color-scheme: light;
+    }
+}

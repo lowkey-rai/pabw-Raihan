@@ -1,0 +1,167 @@
+/* ================================
+   TABEL
+   ================================ */
+
+table {
+    width: 100%;
+    max-width: 700px;
+    border-collapse: collapse;
+    background: var(--color-surface);
+    color: var(--color-fg);
+}
+
+caption {
+    padding-bottom: var(--space-3);
+    font-size: var(--text-md);
+    color: var(--color-fg);
+}
+
+th,
+td {
+    border: 1px solid var(--color-border);
+    padding: var(--space-3);
+    text-align: left;
+}
+
+th {
+    font-weight: 700;
+}
+
+
+/* Lebar kolom tabel */
+
+.kolom-komponen {
+    width: 25%;
+}
+
+.kolom-perawatan {
+    width: 30%;
+}
+
+.kolom-keterangan {
+    width: 45%;
+}
+
+
+/* ================================
+   FORM
+   ================================ */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    max-width: 40rem;
+}
+
+
+/* Kelompok form */
+
+.form-kolom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+
+/* Label */
+
+label {
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+
+/* ================================
+   INPUT
+   ================================ */
+
+input,
+select,
+textarea {
+    font: inherit;
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    color: var(--color-fg);
+}
+
+
+/* Input tanggal */
+
+input[type="date"] {
+    color-scheme: light;
+}
+
+
+/* Textarea */
+
+textarea {
+    resize: vertical;
+}
+
+
+/* ================================
+   BUTTON
+   ================================ */
+
+button {
+    font: inherit;
+    padding: var(--space-2) var(--space-4);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    background: var(--color-primary);
+    color: var(--white);
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+
+/* ================================
+   FOCUS
+   ================================ */
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+}
+
+
+/* ================================
+   INPUT TIDAK VALID
+   ================================ */
+
+input:user-invalid,
+textarea:user-invalid,
+select:user-invalid {
+    border-color: var(--color-danger);
+    border-width: 2px;
+}
+
+
+/* ================================
+   PESAN GALAT
+   ================================ */
+
+.pesan-galat {
+    display: none;
+    color: var(--color-danger);
+    font-size: var(--text-sm);
+}
+
+
+/* Pesan muncul ketika input invalid */
+
+.form-kolom:has(input:user-invalid) .pesan-galat,
+.form-kolom:has(textarea:user-invalid) .pesan-galat,
+.form-kolom:has(select:user-invalid) .pesan-galat {
+    display: block;
+}
