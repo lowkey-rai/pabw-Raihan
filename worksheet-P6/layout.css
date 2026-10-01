@@ -1,0 +1,166 @@
+/* ================================
+   KERANGKA HALAMAN
+   ================================ */
+
+.page {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100dvh;
+}
+
+/* ================================
+   HEADER
+   ================================ */
+
+header {
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.header-baris {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+/* ================================
+   NAVIGASI
+   ================================ */
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    list-style: none;
+    padding: 0;
+}
+
+nav a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ================================
+   MAIN
+   ================================ */
+
+main {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    grid-template-areas:
+        "profil perawatan"
+        "profil catatan";
+    gap: var(--space-6);
+    padding-block: var(--space-6);
+}
+
+/* ================================
+   AREA BERNAMA
+   ================================ */
+
+#profil-motor {
+    grid-area: profil;
+}
+
+#perawatan {
+    grid-area: perawatan;
+}
+
+#catatan {
+    grid-area: catatan;
+}
+
+/* ================================
+   KATALOG KARTU
+   ================================ */
+
+.katalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    gap: var(--space-4);
+}
+
+/* ================================
+   KARTU
+   ================================ */
+
+.kartu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+
+    min-width: 0;
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-1);
+
+    padding: var(--card-pad);
+}
+
+/* ================================
+   STABILITAS KARTU
+   ================================ */
+
+.katalog .kartu {
+    display: grid;
+    align-content: start;
+    min-height: 14rem;
+}
+
+/* ================================
+   ISI PANJANG
+   ================================ */
+
+.kartu h3 {
+    overflow-wrap: anywhere;
+}
+
+/* ================================
+   FOOTER
+   ================================ */
+
+footer {
+    padding-block: var(--space-4);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-fg);
+    font-size: var(--text-sm);
+}
+
+/* ================================
+   LAYAR SEMPIT
+   ================================ */
+
+@media (max-width: 40rem) {
+    .header-baris {
+        align-items: flex-start;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+    }
+
+    main {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "profil"
+            "perawatan"
+            "catatan";
+    }
+
+    #profil-motor,
+    #perawatan,
+    #catatan {
+        grid-area: auto;
+    }
+}
