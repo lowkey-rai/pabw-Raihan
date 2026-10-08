@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ride & Care</title>
+
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="komponen.css">
+    <link rel="stylesheet" href="tema.css">
+    <link rel="stylesheet" href="responsif.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <header>
+
+        <div class="header-baris">
+
+            <h1>Ride & Care</h1>
+
+            <nav aria-label="Navigasi utama">
+                <ul>
+                    <li>
+                        <a href="#profil-motor">Profil Motor</a>
+                    </li>
+
+                    <li>
+                        <a href="#perawatan">Perawatan</a>
+                    </li>
+
+                    <li>
+                        <a href="#catatan">Catatan Penggunaan</a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+
+        <p>
+            Halaman sederhana tentang motor saya,
+            perawatan motor, dan catatan penggunaan sehari-hari.
+        </p>
+
+        <div class="pengalih-tema">
+
+            <input
+                type="checkbox"
+                id="tema"
+                class="pengalih-tema-input"
+            >
+
+            <label for="tema" class="tombol-tema">
+                <span class="teks-gelap">🌙 Mode Gelap</span>
+                <span class="teks-terang">☀️ Mode Terang</span>
+            </label>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section id="profil-motor">
+
+            <h2>Profil Motor</h2>
+
+            <p>
+                Bagian ini berisi informasi singkat mengenai
+                motor yang saya gunakan sehari-hari.
+            </p>
+
+            <img
+                src="Motor.JPG"
+                alt="Motor yang saya gunakan"
+                width="400"
+                height="600"
+                loading="lazy"
+            >
+
+            <p>
+                Motor yang saya gunakan adalah motor matic
+                untuk kebutuhan sehari-hari.
+            </p>
+
+        </section>
+
+
+        <section id="perawatan">
+
+            <h2>Perawatan Motor</h2>
+
+            <p>
+                Saya mencatat perawatan motor supaya lebih mudah
+                mengingat kapan terakhir kali melakukan perawatan.
+            </p>
+
+            <div class="katalog grid">
+
+                <article class="kartu">
+
+                    <h3>Oli Mesin</h3>
+
+                    <p>
+                        <strong>Perawatan:</strong>
+                        Ganti oli
+                    </p>
+
+                    <p>
+                        <strong>Keterangan:</strong>
+                        Dilakukan secara berkala
+                    </p>
+
+                </article>
+
+
+                <article class="kartu">
+
+                    <h3>Ban</h3>
+
+                    <p>
+                        <strong>Perawatan:</strong>
+                        Cek tekanan
+                    </p>
+
+                    <p>
+                        <strong>Keterangan:</strong>
+                        Dicek sebelum digunakan
+                    </p>
+
+                </article>
+
+
+                <article class="kartu">
+
+                    <h3>Rem</h3>
+
+                    <p>
+                        <strong>Perawatan:</strong>
+                        Cek kampas rem
+                    </p>
+
+                    <p>
+                        <strong>Keterangan:</strong>
+                        Memastikan rem masih aman
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section id="catatan">
+
+            <h2>Catatan Penggunaan</h2>
+
+            <p>
+                Bagian ini digunakan untuk mencatat perawatan
+                yang sudah dilakukan pada motor.
+            </p>
+
+
+            <form id="form-catatan">
+
+                <div class="form-kolom">
+
+                    <label for="nama-perawatan">
+                        Nama Perawatan
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nama-perawatan"
+                        name="nama-perawatan"
+                        placeholder="Contoh: Ganti oli"
+                        required
+                    >
+
+                    <p class="pesan-galat">
+                        ⚠ Nama perawatan salah.
+                        Silakan ketik ulang sesuai kartu.
+                    </p>
+
+                </div>
+
+
+                <div class="form-kolom">
+
+                    <label for="tanggal">
+                        Tanggal
+                    </label>
+
+                    <input
+                        type="date"
+                        id="tanggal"
+                        name="tanggal"
+                        required
+                    >
+
+                    <p class="pesan-galat">
+                        ⚠ Tanggal wajib diisi.
+                    </p>
+
+                </div>
+
+
+                <div class="form-kolom">
+
+                    <label for="keterangan">
+                        Keterangan
+                    </label>
+
+                    <textarea
+                        id="keterangan"
+                        name="keterangan"
+                        rows="4"
+                        placeholder="Contoh: Dilakukan secara berkala"
+                        required
+                    ></textarea>
+
+                    <p class="pesan-galat">
+                        ⚠ Keterangan salah.
+                        Silakan ketik ulang sesuai kartu.
+                    </p>
+
+                </div>
+
+
+                <button type="submit">
+                    Simpan Catatan
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            RAIHAN ATHAILLAH · 25523249 · 2026
+        </p>
+
+    </footer>
+
+</div>
+
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
