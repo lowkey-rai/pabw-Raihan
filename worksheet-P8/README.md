@@ -141,6 +141,11 @@ Topik halaman saya: mengolah data halaman Ride & Care menggunakan JavaScript mod
 - Console diperiksa dengan `console.log()` dan `console.table()`.
 - Halaman dijalankan menggunakan `<script type="module" src="js/app.js"></script>` melalui server lokal.
 
-### Deklarasi penggunaan AI
+## Penggunaan AI
 
-Saya menggunakan AI untuk membantu memahami instruksi Worksheet Pertemuan 8, menyusun contoh struktur JavaScript, dan membantu memperbaiki bagian kode yang belum saya pahami. Penyesuaian isi project Ride & Care, pemilihan data motor, pengecekan hasil di browser, dan pengujian kode dilakukan sendiri.
+AI digunakan untuk membantu memahami instruksi tugas, memahami penggunaan JavaScript
+module, const, let, function, map, filter, find, serta membantu mencari penyebab
+error pada kode.
+
+pengecekan hasil di browser, perbaikan error,
+dan pengujian akhir dilakukan sendiri.
