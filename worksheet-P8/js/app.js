@@ -3,8 +3,11 @@ const profil = {
     nim: "25523249",
     peran: "Mahasiswa Informatika yang belajar front-end",
     motor: "Honda Vario 150",
-    keahlian: ["HTML", "CSS", "JavaScript"]
+    keahlian: ["HTML", "CSS", "JavaScript"],
+    jumlahProyek: 3
 };
+
+
 
 const daftarPerawatan = [
     {
@@ -23,6 +26,8 @@ const daftarPerawatan = [
         rutin: true
     }
 ];
+
+
 
 const daftarProyek = [
     {
@@ -51,15 +56,19 @@ const daftarProyek = [
 let pilihanAktif = "semua";
 
 
+
 const jumlahProyek = profil.jumlahProyek ?? daftarProyek.length;
 
-
 const alamatKota = profil.alamat?.kota ?? "Belum diisi";
+
+const judulHalaman = "Ride & Care";
+
 
 
 function buatPerkenalan({ nama, peran }) {
     return `${nama} — ${peran}`;
 }
+
 
 
 const formatKeahlian = (daftar) => daftar.join(" · ");
@@ -75,14 +84,18 @@ const proyekSelesai = daftarProyek.filter(
 );
 
 
-const katalog = daftarProyek.find(
-    (proyek) => proyek.judul === "Ride & Care"
+const katalogProduk = daftarProyek.find(
+    (proyek) => proyek.judul === "Katalog Produk"
 );
 
 
 const proyekUrut = [...daftarProyek].sort(
     (a, b) => a.judul.localeCompare(b.judul)
 );
+
+
+const salinanProfil = { ...profil };
+
 
 
 const elemenJudul = document.getElementById("judul-halaman");
@@ -92,14 +105,22 @@ const elemenProfil = document.getElementById("teks-profil");
 const elemenMotor = document.getElementById("teks-motor");
 const elemenKeahlian = document.getElementById("teks-keahlian");
 const elemenProyek = document.getElementById("daftar-proyek");
-const elemenPerawatan = document.getElementById("daftar-perawatan");
+
+// HTML P6 kamu memakai class "katalog",
+// bukan id "daftar-perawatan".
+const elemenPerawatan =
+    document.getElementById("daftar-perawatan") ||
+    document.querySelector(".katalog");
+
 const elemenGambar = document.getElementById("gambar-motor");
 const elemenFooter = document.getElementById("footer-text");
+
 
 const form = document.getElementById("form-catatan");
 const namaPerawatan = document.getElementById("nama-perawatan");
 const tanggal = document.getElementById("tanggal");
 const keterangan = document.getElementById("keterangan");
+
 
 
 if (elemenJudul) {
@@ -127,7 +148,8 @@ if (elemenMotor) {
 }
 
 if (elemenKeahlian) {
-    elemenKeahlian.textContent = formatKeahlian(profil.keahlian);
+    elemenKeahlian.textContent =
+        formatKeahlian(profil.keahlian);
 }
 
 if (elemenGambar) {
@@ -135,116 +157,262 @@ if (elemenGambar) {
 }
 
 if (elemenFooter) {
-    elemenFooter.textContent = `${profil.nama} · ${profil.nim} · 2026`;
+    elemenFooter.textContent =
+        `${profil.nama} · ${profil.nim} · 2026`;
 }
 
+
+
 function tampilkanPerawatan(data) {
+
+    if (!elemenPerawatan) {
+        return;
+    }
+
     elemenPerawatan.innerHTML = data.map((item) => `
         <article class="kartu">
             <h3>${item.nama}</h3>
-            <p><strong>Perawatan:</strong> ${item.nama}</p>
-            <p><strong>Keterangan:</strong> ${item.keterangan}</p>
+
+            <p>
+                <strong>Perawatan:</strong>
+                ${item.nama}
+            </p>
+
+            <p>
+                <strong>Keterangan:</strong>
+                ${item.keterangan}
+            </p>
         </article>
     `).join("");
 }
 
+
 function tampilkanProyek(data) {
+
+    if (!elemenProyek) {
+        return;
+    }
+
     elemenProyek.innerHTML = data.map((proyek) => `
         <article class="kartu">
             <h3>${proyek.judul}</h3>
-            <p><strong>Tahun:</strong> ${proyek.tahun}</p>
-            <p><strong>Status:</strong> ${
-                proyek.selesai ? "Selesai" : "Sedang dikerjakan"
-            }</p>
+
+            <p>
+                <strong>Tahun:</strong>
+                ${proyek.tahun}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                ${
+                    proyek.selesai
+                        ? "Selesai"
+                        : "Sedang dikerjakan"
+                }
+            </p>
         </article>
     `).join("");
 }
 
+
+
 tampilkanPerawatan(daftarPerawatan);
+
 tampilkanProyek(daftarProyek);
 
 
-console.log(buatPerkenalan(profil));
-console.log(formatKeahlian(profil.keahlian));
 
-console.log("typeof nama:", typeof profil.nama);
-console.log("typeof jumlahProyek:", typeof jumlahProyek);
-console.log("typeof belumDibuat:", typeof belumDibuat);
+console.log(
+    buatPerkenalan(profil)
+);
+
+console.log(
+    formatKeahlian(profil.keahlian)
+);
+
+
+console.log(
+    "typeof nama:",
+    typeof profil.nama
+);
+
+console.log(
+    "typeof jumlahProyek:",
+    typeof jumlahProyek
+);
+
+console.log(
+    "typeof belumDibuat:",
+    typeof belumDibuat
+);
+
+
 
 console.table(profil.keahlian);
+
 console.table(daftarProyek);
+
+
 
 const selesai = daftarProyek.filter(
     (proyek) => proyek.selesai
 );
+
 console.table(selesai);
 
-const katalogProduk = daftarProyek.find(
+
+const katalog = daftarProyek.find(
     (proyek) => proyek.judul === "Katalog Produk"
 );
-console.log("Hasil find Katalog Produk:", katalogProduk);
+
+console.log(
+    "Hasil find Katalog Produk:",
+    katalog
+);
+
 
 const hasilMap = daftarProyek.map(
     (proyek) => proyek.judul
 );
-console.log("Hasil map daftarProyek:", hasilMap);
 
-console.log("Hasil find Ride & Care:", katalog);
-console.log("Salinan terurut:", proyekUrut);
-console.log("Data asli setelah sort salinan:", daftarProyek);
-console.log("Pilihan aktif:", pilihanAktif);
-console.log("Jumlah proyek:", jumlahProyek);
+console.log(
+    "Hasil map daftarProyek:",
+    hasilMap
+);
 
-form.addEventListener("submit", (event) => {
-    const nama = namaPerawatan.value.trim();
-    const ket = keterangan.value.trim();
 
-    const dataNama = daftarPerawatan.find(
-        (data) => data.nama === nama
-    );
 
-    const dataKeterangan = daftarPerawatan.find(
-        (data) => data.keterangan === ket
-    );
+console.log(
+    "Salinan terurut:",
+    proyekUrut
+);
 
-    namaPerawatan.setCustomValidity("");
-    keterangan.setCustomValidity("");
+console.log(
+    "Data asli setelah sort salinan:",
+    daftarProyek
+);
 
-    if (dataNama && dataNama.keterangan === ket) {
-        alert("Catatan berhasil disimpan.");
-        return;
-    }
 
-    event.preventDefault();
+console.log(
+    "Pilihan aktif:",
+    pilihanAktif
+);
 
-    if (dataNama) {
-        keterangan.setCustomValidity(
-            "Keterangan salah. Silakan ketik ulang sesuai kartu."
-        );
-    } else if (dataKeterangan) {
+console.log(
+    "Jumlah proyek:",
+    jumlahProyek
+);
+
+console.log(
+    "Salinan profil:",
+    salinanProfil
+);
+
+
+
+if (
+    form &&
+    namaPerawatan &&
+    tanggal &&
+    keterangan
+) {
+
+    form.addEventListener("submit", (event) => {
+
+        const nama =
+            namaPerawatan.value.trim();
+
+        const ket =
+            keterangan.value.trim();
+
+
+        const dataNama =
+            daftarPerawatan.find(
+                (data) => data.nama === nama
+            );
+
+
+        const dataKeterangan =
+            daftarPerawatan.find(
+                (data) => data.keterangan === ket
+            );
+
+
+        namaPerawatan.setCustomValidity("");
+        tanggal.setCustomValidity("");
+        keterangan.setCustomValidity("");
+
+
+        if (
+            dataNama &&
+            dataNama.keterangan === ket
+        ) {
+
+            alert("Catatan berhasil disimpan.");
+
+            return;
+        }
+
+
+        event.preventDefault();
+
+
+        if (dataNama) {
+
+            keterangan.setCustomValidity(
+                "Keterangan salah. Silakan ketik ulang sesuai kartu."
+            );
+
+            form.reportValidity();
+
+            return;
+        }
+
+
+        if (dataKeterangan) {
+
+            namaPerawatan.setCustomValidity(
+                "Nama perawatan salah. Silakan ketik ulang sesuai kartu."
+            );
+
+            form.reportValidity();
+
+            return;
+        }
+
+
         namaPerawatan.setCustomValidity(
             "Nama perawatan salah. Silakan ketik ulang sesuai kartu."
         );
-    } else {
-        namaPerawatan.setCustomValidity(
-            "Nama perawatan salah. Silakan ketik ulang sesuai kartu."
-        );
+
         keterangan.setCustomValidity(
             "Keterangan salah. Silakan ketik ulang sesuai kartu."
         );
-    }
 
-    form.reportValidity();
-});
+        form.reportValidity();
+    });
 
-namaPerawatan.addEventListener("input", () => {
-    namaPerawatan.setCustomValidity("");
-});
 
-tanggal.addEventListener("input", () => {
-    tanggal.setCustomValidity("");
-});
+    namaPerawatan.addEventListener(
+        "input",
+        () => {
+            namaPerawatan.setCustomValidity("");
+        }
+    );
 
-keterangan.addEventListener("input", () => {
-    keterangan.setCustomValidity("");
-});
+
+    tanggal.addEventListener(
+        "input",
+        () => {
+            tanggal.setCustomValidity("");
+        }
+    );
+
+
+    keterangan.addEventListener(
+        "input",
+        () => {
+            keterangan.setCustomValidity("");
+        }
+    );
+}
