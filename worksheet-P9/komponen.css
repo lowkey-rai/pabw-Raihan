@@ -129,8 +129,40 @@ select:user-invalid {
 }
 
 
-.form-kolom:has(input:user-invalid) .pesan-galat,
-.form-kolom:has(textarea:user-invalid) .pesan-galat,
-.form-kolom:has(select:user-invalid) .pesan-galat {
-    display: block;
+.form-kolom .pesan-galat[hidden] {
+    display: none;
+}
+
+.form-kolom .pesan-galat {
+    color: red;
+    margin-top: 5px;
+}
+
+.form-kolom.tidak-valid input,
+.form-kolom.tidak-valid textarea {
+    border: 1px solid red;
+}
+
+#btn-simpan:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.form-kolom.tidak-valid input,
+.form-kolom.tidak-valid textarea {
+    border-color: red;
+}
+
+.form-kolom .pesan-galat {
+    color: red;
+}
+
+
+.form-kolom .pesan-galat[hidden] {
+    display: none !important;
+}
+
+.form-kolom.tidak-valid .pesan-galat {
+    display: block !important;
+    color: red;
+    margin-top: 5px;
 }

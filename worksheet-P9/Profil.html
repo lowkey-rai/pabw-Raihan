@@ -165,62 +165,54 @@
           yang sudah dilakukan pada motor.
         </p>
 
+        
         <form id="form-catatan">
+            <div class="form-kolom">
+                <label for="nama-perawatan">Nama Perawatan</label>
+                <input
+                    type="text"
+                    id="nama-perawatan"
+                    name="nama-perawatan"
+                    placeholder="Contoh: Ganti oli"
+                    required
+                >
+                <p class="pesan-galat" hidden>
+                    Nama perawatan wajib diisi.
+                </p>
+            </div>
 
-          <div class="form-kolom">
-            <label for="nama-perawatan">Nama Perawatan</label>
+            <div class="form-kolom">
+                <label for="tanggal">Tanggal</label>
+                <input
+                    type="date"
+                    id="tanggal"
+                    name="tanggal"
+                    required
+                >
+                <p class="pesan-galat" hidden>
+                    Tanggal wajib diisi.
+                </p>
+            </div>
 
-            <input
-              type="text"
-              id="nama-perawatan"
-              name="nama-perawatan"
-              placeholder="Contoh: Ganti oli"
-              required
-            >
+            <div class="form-kolom">
+                <label for="keterangan">Keterangan</label>
+                <textarea
+                    id="keterangan"
+                    name="keterangan"
+                    rows="4"
+                    placeholder="Contoh: Dilakukan secara berkala"
+                    required
+                ></textarea>
+                <p class="pesan-galat" hidden>
+                    Keterangan wajib diisi.
+                </p>
+                </div>
 
-            <p class="pesan-galat">
-              ⚠ Nama perawatan salah.
-              Silakan ketik ulang sesuai kartu.
-            </p>
-          </div>
+                <button type="submit" id="btn-simpan" disabled>
+                   Simpan Catatan
+                </button>
+            </form>
 
-          <div class="form-kolom">
-            <label for="tanggal">Tanggal</label>
-
-            <input
-              type="date"
-              id="tanggal"
-              name="tanggal"
-              required
-            >
-
-            <p class="pesan-galat">
-              ⚠ Tanggal wajib diisi.
-            </p>
-          </div>
-
-          <div class="form-kolom">
-            <label for="keterangan">Keterangan</label>
-
-            <textarea
-              id="keterangan"
-              name="keterangan"
-              rows="4"
-              placeholder="Contoh: Dilakukan secara berkala"
-              required
-            ></textarea>
-
-            <p class="pesan-galat">
-              ⚠ Keterangan salah.
-              Silakan ketik ulang sesuai kartu.
-            </p>
-          </div>
-
-          <button type="submit" id="btn-simpan">
-            Simpan Catatan
-          </button>
-
-        </form>
       </section>
 
     </main>
