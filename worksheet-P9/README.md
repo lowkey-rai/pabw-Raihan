@@ -149,3 +149,81 @@ error pada kode.
 
 pengecekan hasil di browser, perbaikan error,
 dan pengujian akhir dilakukan sendiri.
+  
+
+## Pertemuan 9 — DOM, Event, dan Interaktivitas
+
+Topik halaman saya: membuat halaman Ride & Care lebih interaktif menggunakan DOM, event, dan validasi formulir dengan JavaScript.
+
+- Menggunakan `querySelector()` untuk memilih elemen HTML berdasarkan ID dan kelas.
+- Menggunakan `querySelectorAll()` untuk mengambil beberapa elemen sekaligus.
+- Menggunakan `createElement()` untuk membuat kartu proyek secara dinamis.
+- Menggunakan `textContent` untuk mengisi teks pada elemen HTML dengan aman.
+- Menggunakan `replaceChildren()` untuk mengosongkan wadah sebelum menampilkan daftar proyek.
+- Menggunakan `forEach()` untuk menampilkan setiap proyek dari data array.
+- Menggunakan `filter()` untuk menyaring proyek berdasarkan status selesai dan belum selesai.
+- Menggunakan `addEventListener()` untuk menangani klik tombol filter dan perubahan pada formulir.
+- Menggunakan event delegation dengan satu pendengar klik pada elemen induk `#filter-proyek`.
+- Menggunakan `event.target.closest()` untuk mengetahui tombol filter yang diklik.
+- Menggunakan `classList.toggle()` untuk mengubah penanda tombol filter yang aktif.
+- Menampilkan pesan ketika daftar proyek kosong.
+- Memvalidasi formulir catatan perawatan agar semua kolom wajib diisi sebelum formulir dapat dikirim.
+- Menggunakan `event.preventDefault()` untuk mencegah formulir memuat ulang halaman.
+- Menampilkan pesan validasi pada kolom yang belum diisi dan menonaktifkan tombol simpan jika isian belum lengkap.
+- Memeriksa kode menggunakan Console dan panel Event Listeners pada DevTools browser.
+
+### Berkas yang digunakan
+
+- `Profil.html`
+- `js/app.js`
+- `js/dom.js`
+- Berkas CSS yang digunakan pada halaman Ride & Care.
+
+### Potongan kode utama
+
+function tampilkanProyek(data) {
+    elemenProyek.replaceChildren();
+
+    if (data.length === 0) {
+        pesanKosong.hidden = false;
+        return;
+    }
+
+    pesanKosong.hidden = true;
+
+    data.forEach((proyek) => {
+        const kartu = document.createElement("article");
+        kartu.className = "kartu";
+
+        const judul = document.createElement("h3");
+        judul.textContent = proyek.judul;
+
+        kartu.append(judul);
+        elemenProyek.append(kartu);
+    });
+}
+
+
+### Event Delegation
+
+barisFilter.addEventListener("click", (event) => {
+    const tombol = event.target.closest(".filter");
+
+    if (!tombol || !barisFilter.contains(tombol)) {
+        return;
+    }
+
+    pilihanAktif = tombol.dataset.filter;
+    saringProyek();
+});
+
+
+### Penggunaan AI
+
+AI digunakan untuk membantu memahami instruksi worksheet Pertemuan 9, menjelaskan konsep DOM manipulation, event delegation, penyaringan data, validasi formulir, serta membantu memeriksa dan memahami kemungkinan kesalahan pada kode JavaScript.
+
+Penyesuaian kode pada proyek Ride & Care, menjalankan halaman di browser, memeriksa hasil filter, menguji validasi formulir, dan mengecek hasil pekerjaan dilakukan sendiri dengan bantuan panduan yang diberikan.
+
+### Kesimpulan
+
+Pada pertemuan ini, saya mempelajari cara memilih dan memanipulasi elemen HTML menggunakan JavaScript, menampilkan data proyek secara dinamis, menangani klik melalui event delegation, serta melakukan validasi formulir. Fitur tersebut membuat halaman Ride & Care lebih interaktif dan membantu pengguna mengisi formulir dengan benar.
