@@ -28,33 +28,43 @@ export function render(data) {
     saringProyek();
 }
 
+function buatKartu(proyek) {
+    const kartu = document.createElement("article");
+    kartu.className = "kartu";
+
+    const judul = document.createElement("h3");
+    judul.textContent = proyek.judul;
+
+    const tahun = document.createElement("p");
+    tahun.textContent = `Tahun: ${proyek.tahun}`;
+
+    const status = document.createElement("p");
+    status.textContent = `Status: ${
+        proyek.selesai ? "Selesai" : "Belum selesai"
+    }`;
+
+    kartu.append(judul, tahun, status);
+
+    return kartu;
+}
+
 function tampilkanProyek(data) {
     elemenProyek.replaceChildren();
 
     if (data.length === 0) {
-        pesanKosong.hidden = false;
+        if (pesanKosong) {
+            pesanKosong.textContent = "Belum ada data.";
+            pesanKosong.hidden = false;
+        }
         return;
     }
 
-    pesanKosong.hidden = true;
+    if (pesanKosong) {
+        pesanKosong.hidden = true;
+    }
 
     data.forEach((proyek) => {
-        const kartu = document.createElement("article");
-        kartu.className = "kartu";
-
-        const judul = document.createElement("h3");
-        judul.textContent = proyek.judul;
-
-        const tahun = document.createElement("p");
-        tahun.textContent = `Tahun: ${proyek.tahun}`;
-
-        const status = document.createElement("p");
-        status.textContent = `Status: ${
-            proyek.selesai ? "Selesai" : "Belum selesai"
-        }`;
-
-        kartu.append(judul, tahun, status);
-        elemenProyek.append(kartu);
+        elemenProyek.append(buatKartu(proyek));
     });
 }
 
@@ -74,21 +84,23 @@ function saringProyek() {
     tampilkanProyek(hasil);
 }
 
-barisFilter.addEventListener("click", (event) => {
-    const tombol = event.target.closest(".filter");
+if (barisFilter) {
+    barisFilter.addEventListener("click", (event) => {
+        const tombol = event.target.closest(".filter");
 
-    if (!tombol || !barisFilter.contains(tombol)) {
-        return;
-    }
+        if (!tombol || !barisFilter.contains(tombol)) {
+            return;
+        }
 
-    pilihanAktif = tombol.dataset.filter;
+        pilihanAktif = tombol.dataset.filter;
 
-    barisFilter.querySelectorAll(".filter").forEach((item) => {
-        item.classList.toggle("aktif", item === tombol);
+        barisFilter.querySelectorAll(".filter").forEach((item) => {
+            item.classList.toggle("aktif", item === tombol);
+        });
+
+        saringProyek();
     });
-
-    saringProyek();
-});
+}
 
 const formCatatan = document.querySelector("#form-catatan");
 const namaPerawatan = document.querySelector("#nama-perawatan");
@@ -101,6 +113,7 @@ const semuaKolom = [
     tanggal,
     keterangan
 ];
+
 
 function periksaKolom(kolom) {
     const pembungkus = kolom.closest(".form-kolom");
