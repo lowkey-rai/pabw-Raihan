@@ -227,3 +227,58 @@ Penyesuaian kode pada proyek Ride & Care, menjalankan halaman di browser, memeri
 ### Kesimpulan
 
 Pada pertemuan ini, saya mempelajari cara memilih dan memanipulasi elemen HTML menggunakan JavaScript, menampilkan data proyek secara dinamis, menangani klik melalui event delegation, serta melakukan validasi formulir. Fitur tersebut membuat halaman Ride & Care lebih interaktif dan membantu pengguna mengisi formulir dengan benar.
+
+## Pertemuan 10 — Fetch, Async/Await, dan Penanganan Data
+
+Topik halaman saya: mengambil data proyek menggunakan Fetch API, mengelola proses asynchronous dengan async/await, dan menampilkan hasilnya pada halaman Ride & Care.
+
+- Data proyek diambil dari berkas JSON menggunakan Fetch API.
+- Alamat sumber data disimpan dalam konstanta `ALAMAT` di `js/api.js`.
+- Menggunakan `async` dan `await` untuk mengelola proses pengambilan data.
+- Memeriksa `respons.ok` untuk mengetahui apakah permintaan berhasil.
+- Menggunakan `respons.json()` untuk mengubah respons menjadi data JavaScript.
+- Menggunakan `try...catch` untuk menangani kesalahan saat mengambil data.
+- Menggunakan `finally` untuk mengakhiri status loading.
+- Menampilkan data proyek sebagai elemen HTML menggunakan DOM.
+- Menampilkan pesan ketika data kosong atau gagal dimuat.
+- Menguji kondisi berhasil, gagal, loading, dan data kosong melalui browser dan DevTools.
+- Memeriksa Console dan Network untuk memastikan proses pengambilan data berjalan dengan benar.
+
+### Berkas yang digunakan
+
+- `Profil.html`
+- `js/app.js`
+- `js/api.js`
+- `js/dom.js`
+- `data/proyek.json`
+
+### Potongan kode utama
+
+const ALAMAT = 'data/proyek.json';
+
+export async function ambilProyek() {
+    try {
+        const respons = await fetch(ALAMAT);
+
+        if (!respons.ok) {
+            throw new Error('status ' + respons.status);
+        }
+
+        const data = await respons.json();
+        return data;
+    } catch (galat) {
+        console.error('gagal memuat', galat.message);
+        throw galat;
+    }
+}
+
+
+### Penggunaan AI
+
+AI digunakan untuk membantu memahami instruksi worksheet Pertemuan 10, menjelaskan penggunaan Fetch API, async/await, Promise, penanganan kesalahan, dan status tampilan saat mengambil data. AI juga membantu menemukan kemungkinan kesalahan pada kode dan memberikan panduan pengujian.
+
+Penyesuaian kode pada proyek Ride & Care, menjalankan halaman melalui server lokal, menguji proses pengambilan data, memeriksa Console dan Network, serta mengecek hasil akhir dilakukan sendiri dengan mengikuti panduan yang diberikan.
+
+### Kesimpulan
+
+Pada pertemuan ini, saya mempelajari cara mengambil data JSON menggunakan Fetch API, mengelola proses asynchronous dengan async/await, menangani kesalahan, dan menampilkan status loading maupun data kosong. Fitur ini membuat pengambilan dan penampilan data proyek pada halaman Ride & Care menjadi lebih terstruktur.

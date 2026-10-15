@@ -175,3 +175,4 @@ formCatatan.addEventListener("submit", (event) => {
 
     alert("Form berhasil divalidasi.");
 });
+window.render = render;
