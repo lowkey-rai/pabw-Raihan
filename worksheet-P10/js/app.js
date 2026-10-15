@@ -1,4 +1,3 @@
-
 import { ambilProyek } from "./api.js";
 import {
     render,
@@ -150,6 +149,15 @@ async function muatProyek() {
         render(dataProyek);
 
         console.table(dataProyek);
+
+        const badan = JSON.stringify({
+        judul: 'Judul contoh',
+        kategori: 'web'
+});
+
+console.log(typeof badan);
+
+console.log(typeof badan);
     } catch (galat) {
         tampilkanGalat(
             "Proyek gagal dimuat. Periksa koneksi dan alamat data."
