@@ -1,0 +1,22 @@
+[
+  {
+    "judul": "Ride & Care",
+    "tahun": 2026,
+    "selesai": true
+  },
+  {
+    "judul": "Profil Motor dengan CSS",
+    "tahun": 2026,
+    "selesai": true
+  },
+  {
+    "judul": "Halaman Responsif",
+    "tahun": 2026,
+    "selesai": true
+  },
+  {
+    "judul": "JavaScript Modern ES6+",
+    "tahun": 2026,
+    "selesai": false
+  }
+]

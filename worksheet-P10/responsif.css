@@ -1,0 +1,77 @@
+.content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+}
+
+@media (min-width: 48rem) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 60rem) {
+    .content {
+        grid-template-columns: 16rem 1fr;
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.grid > *,
+.content > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+
+#daftar-proyek {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+    gap: var(--space-4);
+}
+
+#daftar-proyek .kartu {
+    min-width: 0;
+    overflow-wrap: break-word;
+}
+
+#daftar-proyek .kartu h3,
+#daftar-proyek .kartu p {
+    overflow-wrap: break-word;
+    word-break: normal;
+}
