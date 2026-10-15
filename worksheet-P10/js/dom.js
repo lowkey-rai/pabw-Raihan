@@ -1,10 +1,32 @@
-import { daftarProyek } from "./app.js";
+let daftarProyek = [];
 
 const elemenProyek = document.querySelector("#daftar-proyek");
 const barisFilter = document.querySelector("#filter-proyek");
 const pesanKosong = document.querySelector("#pesan-kosong");
+const pesanMuat = document.querySelector("#muat");
 
 let pilihanAktif = "semua";
+
+export function aturMemuat(aktif) {
+    if (pesanMuat) {
+        pesanMuat.hidden = !aktif;
+    }
+}
+
+export function tampilkanGalat(pesan) {
+    elemenProyek.replaceChildren();
+
+    if (pesanKosong) {
+        pesanKosong.hidden = true;
+    }
+
+    elemenProyek.textContent = pesan;
+}
+
+export function render(data) {
+    daftarProyek = data;
+    saringProyek();
+}
 
 function tampilkanProyek(data) {
     elemenProyek.replaceChildren();
@@ -68,8 +90,6 @@ barisFilter.addEventListener("click", (event) => {
     saringProyek();
 });
 
-saringProyek();
-
 const formCatatan = document.querySelector("#form-catatan");
 const namaPerawatan = document.querySelector("#nama-perawatan");
 const tanggal = document.querySelector("#tanggal");
@@ -85,7 +105,6 @@ const semuaKolom = [
 function periksaKolom(kolom) {
     const pembungkus = kolom.closest(".form-kolom");
     const pesanGalat = pembungkus.querySelector(".pesan-galat");
-
     const sah = kolom.value.trim() !== "";
 
     kolom.setAttribute("aria-invalid", String(!sah));
@@ -96,10 +115,7 @@ function periksaKolom(kolom) {
 }
 
 function periksaForm() {
-    const hasil = semuaKolom.map((kolom) => {
-        return periksaKolom(kolom);
-    });
-
+    const hasil = semuaKolom.map((kolom) => periksaKolom(kolom));
     const sah = hasil.every(Boolean);
 
     tombolSimpan.disabled = !sah;
@@ -146,4 +162,3 @@ formCatatan.addEventListener("submit", (event) => {
 
     alert("Form berhasil divalidasi.");
 });
-
