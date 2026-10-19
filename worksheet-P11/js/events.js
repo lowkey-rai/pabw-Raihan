@@ -1,5 +1,8 @@
-
-import { pilihKategori, tambahFavorit } from "./state.js";
+import {
+    pilihKategori,
+    tambahFavorit,
+    aturUlang
+} from "./state.js";
 
 export function pasangPendengar() {
     const barisFilter = document.querySelector("#filter-proyek");
@@ -81,7 +84,7 @@ export function pasangPendengar() {
         tombolSimpan.disabled = true;
     }
 
-    if (form) {
+        if (form) {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
 
@@ -94,6 +97,14 @@ export function pasangPendengar() {
             }
 
             alert("Form berhasil divalidasi.");
+        });
+    }
+
+    const tombolAturUlang = document.querySelector("#atur-ulang");
+
+    if (tombolAturUlang) {
+        tombolAturUlang.addEventListener("click", () => {
+            aturUlang();
         });
     }
 }
