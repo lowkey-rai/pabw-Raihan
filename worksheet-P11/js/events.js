@@ -11,7 +11,7 @@ export function pasangPendengar() {
 
             if (!tombol) return;
 
-            pilihKategori(tombol.dataset.kategori || "semua");
+            pilihKategori(tombol.dataset.filter || "semua");
         });
     }
 

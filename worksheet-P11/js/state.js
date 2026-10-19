@@ -12,10 +12,6 @@ export function isiProyek(daftar) {
     render(state);
 }
 
-export function aturProyek(daftar) {
-    state.daftarProyek = daftar;
-}
-
 export function pilihKategori(kategori) {
     state.kategoriAktif = kategori;
     render(state);
@@ -27,7 +23,7 @@ export function tambahFavorit(id) {
             (favoritId) => favoritId !== id
         );
     } else {
-        state.favorit.push(id);
+        state.favorit = [...state.favorit, id];
     }
 
     render(state);
