@@ -282,3 +282,45 @@ Penyesuaian kode pada proyek Ride & Care, menjalankan halaman melalui server lok
 ### Kesimpulan
 
 Pada pertemuan ini, saya mempelajari cara mengambil data JSON menggunakan Fetch API, mengelola proses asynchronous dengan async/await, menangani kesalahan, dan menampilkan status loading maupun data kosong. Fitur ini membuat pengambilan dan penampilan data proyek pada halaman Ride & Care menjadi lebih terstruktur.
+
+## Pertemuan 11 — Modul, State, dan Penyimpanan Klien
+
+Topik halaman saya: memisahkan kode JavaScript ke dalam beberapa modul, mengelola state aplikasi, dan menyimpan pilihan pengguna menggunakan localStorage pada halaman Ride & Care.
+
+- Memisahkan kode JavaScript menjadi `data.js`, `state.js`, `dom.js`, `events.js`, dan `app.js`.
+- Mempertahankan `api.js` dari Pertemuan 10 untuk mengambil data proyek dari berkas JSON.
+- Menggunakan `import` dan `export` untuk menghubungkan modul JavaScript.
+- Menyimpan keadaan aplikasi dalam satu objek `state`.
+- Menggunakan fungsi bernama untuk mengubah kategori aktif dan daftar favorit.
+- Menggunakan `render(state)` untuk memperbarui tampilan berdasarkan keadaan aplikasi.
+- Menggunakan `localStorage` dan JSON untuk menyimpan serta memuat pilihan kategori dan daftar favorit.
+- Menyediakan nilai bawaan ketika belum ada data yang tersimpan.
+- Menambahkan tombol Atur ulang untuk mengembalikan keadaan aplikasi ke nilai awal.
+- Menangani simpanan yang rusak menggunakan `try...catch` dan memeriksa versi data.
+- Menguji fitur melalui browser, Console, dan pemuatan ulang halaman.
+
+### Berkas yang digunakan
+
+- `Profil.html`
+- `js/app.js`
+- `js/api.js`
+- `js/data.js`
+- `js/state.js`
+- `js/dom.js`
+- `js/events.js`
+- `data/proyek.json`
+- Berkas CSS yang digunakan pada halaman Ride & Care.
+
+### Penggunaan AI
+
+AI digunakan untuk membantu memahami instruksi worksheet Pertemuan 11, menjelaskan pemecahan modul JavaScript, pengelolaan state, penggunaan localStorage dan JSON, serta penanganan simpanan yang rusak.
+
+Penyesuaian kode pada proyek Ride & Care, menjalankan halaman di browser, menguji kategori dan favorit, memeriksa penyimpanan setelah halaman dimuat ulang, serta menguji simpanan yang rusak dilakukan sendiri dengan mengikuti panduan yang diberikan.
+
+### Kesimpulan
+
+Pada pertemuan ini, saya mempelajari cara memisahkan kode JavaScript berdasarkan tanggung jawabnya, mengelola keadaan aplikasi menggunakan objek state, dan menyimpan pilihan pengguna menggunakan localStorage. Saya juga mempelajari cara menangani simpanan yang rusak agar halaman tetap dapat digunakan.
+
+### Persiapan Node.js
+
+Node.js berhasil dijalankan dengan versi `v24.22.0`, sedangkan npm berhasil dijalankan dengan versi `11.19.1`. Perintah `node -v` berhasil dijalankan langsung di terminal VS Code. Perintah npm dijalankan menggunakan lokasi `C:\Program Files\nodejs\npm.cmd`.
