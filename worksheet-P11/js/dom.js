@@ -1,11 +1,17 @@
-let daftarProyek = [];
+
+import {
+    profil,
+    buatPerkenalan,
+    formatKeahlian,
+    saring
+} from "./data.js";
+
+import { state } from "./state.js";
 
 const elemenProyek = document.querySelector("#daftar-proyek");
 const barisFilter = document.querySelector("#filter-proyek");
 const pesanKosong = document.querySelector("#pesan-kosong");
 const pesanMuat = document.querySelector("#muat");
-
-let pilihanAktif = "semua";
 
 export function aturMemuat(aktif) {
     if (pesanMuat) {
@@ -14,6 +20,8 @@ export function aturMemuat(aktif) {
 }
 
 export function tampilkanGalat(pesan) {
+    if (!elemenProyek) return;
+
     elemenProyek.replaceChildren();
 
     if (pesanKosong) {
@@ -21,11 +29,6 @@ export function tampilkanGalat(pesan) {
     }
 
     elemenProyek.textContent = pesan;
-}
-
-export function render(data) {
-    daftarProyek = data;
-    saringProyek();
 }
 
 function buatKartu(proyek) {
@@ -43,15 +46,34 @@ function buatKartu(proyek) {
         proyek.selesai ? "Selesai" : "Belum selesai"
     }`;
 
-    kartu.append(judul, tahun, status);
+    const tombolFavorit = document.createElement("button");
+    tombolFavorit.type = "button";
+    tombolFavorit.className = "favorit";
+    tombolFavorit.dataset.id = proyek.id;
+    tombolFavorit.textContent = state.favorit.includes(proyek.id)
+        ? "★"
+        : "☆";
+    tombolFavorit.setAttribute(
+        "aria-label",
+        `Favorit ${proyek.judul}`
+    );
+
+    kartu.append(judul, tahun, status, tombolFavorit);
 
     return kartu;
 }
 
-function tampilkanProyek(data) {
+export function render(state) {
+    if (!elemenProyek) return;
+
     elemenProyek.replaceChildren();
 
-    if (data.length === 0) {
+    const hasil = saring(
+        state.daftarProyek,
+        state.kategoriAktif
+    );
+
+    if (hasil.length === 0) {
         if (pesanKosong) {
             pesanKosong.textContent = "Belum ada data.";
             pesanKosong.hidden = false;
@@ -63,116 +85,16 @@ function tampilkanProyek(data) {
         pesanKosong.hidden = true;
     }
 
-    data.forEach((proyek) => {
+    hasil.forEach((proyek) => {
         elemenProyek.append(buatKartu(proyek));
     });
-}
 
-function saringProyek() {
-    const hasil = daftarProyek.filter((proyek) => {
-        if (pilihanAktif === "selesai") {
-            return proyek.selesai;
-        }
-
-        if (pilihanAktif === "proses") {
-            return !proyek.selesai;
-        }
-
-        return true;
-    });
-
-    tampilkanProyek(hasil);
-}
-
-if (barisFilter) {
-    barisFilter.addEventListener("click", (event) => {
-        const tombol = event.target.closest(".filter");
-
-        if (!tombol || !barisFilter.contains(tombol)) {
-            return;
-        }
-
-        pilihanAktif = tombol.dataset.filter;
-
-        barisFilter.querySelectorAll(".filter").forEach((item) => {
-            item.classList.toggle("aktif", item === tombol);
+    if (barisFilter) {
+        barisFilter.querySelectorAll(".filter").forEach((tombol) => {
+            tombol.classList.toggle(
+                "aktif",
+                tombol.dataset.filter === state.kategoriAktif
+            );
         });
-
-        saringProyek();
-    });
-}
-
-const formCatatan = document.querySelector("#form-catatan");
-const namaPerawatan = document.querySelector("#nama-perawatan");
-const tanggal = document.querySelector("#tanggal");
-const keterangan = document.querySelector("#keterangan");
-const tombolSimpan = document.querySelector("#btn-simpan");
-
-const semuaKolom = [
-    namaPerawatan,
-    tanggal,
-    keterangan
-];
-
-
-function periksaKolom(kolom) {
-    const pembungkus = kolom.closest(".form-kolom");
-    const pesanGalat = pembungkus.querySelector(".pesan-galat");
-    const sah = kolom.value.trim() !== "";
-
-    kolom.setAttribute("aria-invalid", String(!sah));
-    pembungkus.classList.toggle("tidak-valid", !sah);
-    pesanGalat.hidden = sah;
-
-    return sah;
-}
-
-function periksaForm() {
-    const hasil = semuaKolom.map((kolom) => periksaKolom(kolom));
-    const sah = hasil.every(Boolean);
-
-    tombolSimpan.disabled = !sah;
-
-    return sah;
-}
-
-semuaKolom.forEach((kolom) => {
-    const pembungkus = kolom.closest(".form-kolom");
-    const pesanGalat = pembungkus.querySelector(".pesan-galat");
-
-    pembungkus.classList.remove("tidak-valid");
-    pesanGalat.hidden = true;
-    kolom.setAttribute("aria-invalid", "false");
-});
-
-tombolSimpan.disabled = true;
-
-formCatatan.addEventListener("input", (event) => {
-    const kolom = event.target;
-
-    if (semuaKolom.includes(kolom)) {
-        periksaKolom(kolom);
     }
-
-    tombolSimpan.disabled = !semuaKolom.every(
-        (kolom) => kolom.value.trim() !== ""
-    );
-});
-
-formCatatan.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const sah = periksaForm();
-
-    if (!sah) {
-        const kolomSalah = semuaKolom.find(
-            (kolom) => kolom.value.trim() === ""
-        );
-
-        kolomSalah?.focus();
-        return;
-    }
-
-    alert("Form berhasil divalidasi.");
-});
-window.render = render;
+}
