@@ -1,7 +1,136 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue'
+import { profil } from './data.js'
+import KepalaProfil from './components/KepalaProfil.vue'
+import TombolFilter from './components/TombolFilter.vue'
+import DaftarProyek from './components/DaftarProyek.vue'
+import FormKontak from './components/FormKontak.vue'
+
+const temaGelap = ref(false)
+const filterAktif = ref('semua')
+
+function ubahTema() {
+  document.documentElement.classList.toggle(
+    'tema-gelap',
+    temaGelap.value
+  )
+}
+
+function ubahFilter(kategori) {
+  filterAktif.value = kategori
+}
 </script>
 
 <template>
-  <HelloWorld />
+  <div class="page">
+    <header>
+      <div class="header-baris">
+        <div>
+          <h1>Ride &amp; Care</h1>
+          <KepalaProfil :profil="profil" />
+        </div>
+
+        <nav aria-label="Navigasi utama">
+          <ul>
+            <li><a href="#profil-motor">Profil Motor</a></li>
+            <li><a href="#perawatan">Perawatan</a></li>
+            <li><a href="#proyek">Daftar Proyek</a></li>
+            <li><a href="#catatan">Catatan Penggunaan</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <p>
+        Halaman sederhana tentang motor saya, perawatan motor,
+        dan catatan penggunaan sehari-hari.
+      </p>
+
+      <div class="pengalih-tema">
+        <input
+          v-model="temaGelap"
+          @change="ubahTema"
+          type="checkbox"
+          id="tema"
+          class="pengalih-tema-input"
+        >
+
+        <label for="tema" class="tombol-tema">
+          <span class="teks-gelap">🌙 Mode Gelap</span>
+          <span class="teks-terang">☀️ Mode Terang</span>
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section id="profil-motor">
+        <h2>Profil Motor</h2>
+        <p>
+          Bagian ini berisi informasi singkat mengenai motor
+          yang saya gunakan sehari-hari.
+        </p>
+
+        <img
+          src="/Motor.JPG"
+          alt="Motor yang saya gunakan"
+          width="400"
+          height="600"
+          loading="lazy"
+        >
+
+        <p>
+          Motor yang saya gunakan adalah motor matic
+          untuk kebutuhan sehari-hari.
+        </p>
+      </section>
+
+      <section id="perawatan">
+        <h2>Perawatan Motor</h2>
+        <p>
+          Saya mencatat perawatan motor supaya lebih mudah
+          mengingat kapan terakhir kali melakukan perawatan.
+        </p>
+
+        <div class="katalog grid">
+          <article class="kartu">
+            <h3>Oli Mesin</h3>
+            <p><strong>Perawatan:</strong> Ganti oli</p>
+            <p><strong>Keterangan:</strong> Dilakukan secara berkala</p>
+          </article>
+
+          <article class="kartu">
+            <h3>Ban</h3>
+            <p><strong>Perawatan:</strong> Cek tekanan</p>
+            <p><strong>Keterangan:</strong> Dicek sebelum digunakan</p>
+          </article>
+
+          <article class="kartu">
+            <h3>Rem</h3>
+            <p><strong>Perawatan:</strong> Cek kampas rem</p>
+            <p><strong>Keterangan:</strong> Memastikan rem masih aman</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="proyek">
+        <h2>Daftar Proyek</h2>
+        <p>
+          Berikut daftar proyek yang sedang dan sudah
+          saya kerjakan.
+        </p>
+
+        <TombolFilter
+          @ubah-filter="ubahFilter"
+          @atur-ulang="ubahFilter('semua')"
+        />
+
+        <DaftarProyek :filter="filterAktif" />
+      </section>
+
+      <FormKontak />
+    </main>
+
+    <footer>
+      <p>RAIHAN ATHAILLAH · 25523249 · 2026</p>
+    </footer>
+  </div>
 </template>
