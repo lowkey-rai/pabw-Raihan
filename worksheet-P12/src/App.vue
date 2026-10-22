@@ -1,7 +1,17 @@
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { profil } from './data.js'
+import {
+  state,
+  pilihKategori,
+  simpan,
+  muat,
+  pulihkan,
+  isiProyek,
+  aturUlang,
+} from './state.js'
+import { ambilProyek } from './api.js'
 
 import KepalaProfil from './components/KepalaProfil.vue'
 import TombolFilter from './components/TombolFilter.vue'
@@ -9,15 +19,41 @@ import DaftarProyek from './components/DaftarProyek.vue'
 import FormKontak from './components/FormKontak.vue'
 
 const temaGelap = ref(false)
-const filterAktif = ref('semua')
-
-function ubahFilter(kategori) {
-  filterAktif.value = kategori
-}
 
 watch(temaGelap, (aktif) => {
   document.documentElement.classList.toggle('tema-gelap', aktif)
 })
+
+onMounted(async () => {
+  pulihkan(muat())
+
+  try {
+    isiProyek(await ambilProyek())
+    state.galat = ''
+  } catch (galat) {
+    state.galat =
+      'Data gagal dimuat. Periksa koneksi, lalu muat ulang.'
+    console.error(galat)
+  } finally {
+    state.memuat = false
+  }
+})
+
+watch(
+  state,
+  (nilai) => {
+    simpan(nilai)
+  },
+  { deep: true }
+)
+
+function ubahFilter(kategori) {
+  pilihKategori(kategori)
+}
+
+function resetFilter() {
+  aturUlang()
+}
 </script>
 
 <template>
@@ -127,10 +163,10 @@ watch(temaGelap, (aktif) => {
 
         <TombolFilter
           @ubah-filter="ubahFilter"
-          @atur-ulang="ubahFilter('semua')"
+          @atur-ulang="resetFilter"
         />
 
-        <DaftarProyek :filter="filterAktif" />
+        <DaftarProyek :filter="state.kategoriAktif" />
       </section>
 
       <FormKontak />

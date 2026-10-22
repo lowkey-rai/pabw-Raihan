@@ -1,5 +1,10 @@
+
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { computed } from 'vue'
+import {
+  state,
+  tambahFavorit,
+} from '../state.js'
 
 const props = defineProps({
   filter: {
@@ -8,76 +13,75 @@ const props = defineProps({
   },
 })
 
-const daftarProyek = ref([])
-const sedangMemuat = ref(true)
-const pesanError = ref('')
-
-async function ambilProyek() {
-  sedangMemuat.value = true
-  pesanError.value = ''
-
-  try {
-    const respons = await fetch('/data/proyek.json')
-
-    if (!respons.ok) {
-      throw new Error(`Gagal mengambil data: ${respons.status}`)
-    }
-
-    daftarProyek.value = await respons.json()
-  } catch (error) {
-    pesanError.value = 'Gagal memuat proyek. Periksa file proyek.json.'
-    console.error(error)
-  } finally {
-    sedangMemuat.value = false
-  }
-}
-
 const proyekTampil = computed(() => {
+  let hasil = state.daftarProyek
+
   if (props.filter === 'selesai') {
-    return daftarProyek.value.filter(
-      proyek => proyek.selesai === true
-    )
+    hasil = hasil.filter(proyek => proyek.selesai === true)
+  } else if (props.filter === 'proses') {
+    hasil = hasil.filter(proyek => proyek.selesai === false)
   }
 
-  if (props.filter === 'proses') {
-    return daftarProyek.value.filter(
-      proyek => proyek.selesai === false
-    )
-  }
-
-  return daftarProyek.value
+  return hasil
 })
 
-onMounted(ambilProyek)
+function idProyek(proyek, index) {
+  return proyek.id ?? proyek.nama ?? index
+}
 </script>
 
 <template>
   <div>
-    <p v-if="sedangMemuat" id="muat">
+    <p v-if="state.memuat" id="muat">
       Memuat data...
     </p>
 
-    <p v-else-if="pesanError">
-      {{ pesanError }}
+    <p v-else-if="state.galat" role="alert">
+      {{ state.galat }}
     </p>
 
-    <p v-else-if="proyekTampil.length === 0" id="pesan-kosong">
+    <p
+      v-else-if="proyekTampil.length === 0"
+      id="pesan-kosong"
+    >
       Belum ada data.
     </p>
 
-    <div v-else id="daftar-proyek" class="katalog grid">
+    <div
+      v-else
+      id="daftar-proyek"
+      class="katalog grid"
+    >
       <article
         v-for="(proyek, index) in proyekTampil"
-        :key="proyek.id ?? proyek.nama ?? index"
+        :key="idProyek(proyek, index)"
         class="kartu"
       >
         <h3>{{ proyek.nama }}</h3>
-        <p v-if="proyek.deskripsi">{{ proyek.deskripsi }}</p>
-        <p v-if="proyek.tahun">Tahun: {{ proyek.tahun }}</p>
+
+        <p v-if="proyek.deskripsi">
+          {{ proyek.deskripsi }}
+        </p>
+
+        <p v-if="proyek.tahun">
+          Tahun: {{ proyek.tahun }}
+        </p>
+
         <p>
           Status:
           {{ proyek.selesai ? 'Selesai' : 'Belum Selesai' }}
         </p>
+
+        <button
+          type="button"
+          @click="tambahFavorit(idProyek(proyek, index))"
+        >
+          {{
+            state.favorit.includes(idProyek(proyek, index))
+              ? '★ Hapus Favorit'
+              : '☆ Tambah Favorit'
+          }}
+        </button>
       </article>
     </div>
   </div>
