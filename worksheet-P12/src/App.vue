@@ -1,6 +1,8 @@
+
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { profil } from './data.js'
+
 import KepalaProfil from './components/KepalaProfil.vue'
 import TombolFilter from './components/TombolFilter.vue'
 import DaftarProyek from './components/DaftarProyek.vue'
@@ -9,16 +11,13 @@ import FormKontak from './components/FormKontak.vue'
 const temaGelap = ref(false)
 const filterAktif = ref('semua')
 
-function ubahTema() {
-  document.documentElement.classList.toggle(
-    'tema-gelap',
-    temaGelap.value
-  )
-}
-
 function ubahFilter(kategori) {
   filterAktif.value = kategori
 }
+
+watch(temaGelap, (aktif) => {
+  document.documentElement.classList.toggle('tema-gelap', aktif)
+})
 </script>
 
 <template>
@@ -47,12 +46,11 @@ function ubahFilter(kategori) {
 
       <div class="pengalih-tema">
         <input
-          v-model="temaGelap"
-          @change="ubahTema"
-          type="checkbox"
           id="tema"
+          v-model="temaGelap"
+          type="checkbox"
           class="pengalih-tema-input"
-        >
+        />
 
         <label for="tema" class="tombol-tema">
           <span class="teks-gelap">🌙 Mode Gelap</span>
@@ -75,7 +73,7 @@ function ubahFilter(kategori) {
           width="400"
           height="600"
           loading="lazy"
-        >
+        />
 
         <p>
           Motor yang saya gunakan adalah motor matic
@@ -94,19 +92,28 @@ function ubahFilter(kategori) {
           <article class="kartu">
             <h3>Oli Mesin</h3>
             <p><strong>Perawatan:</strong> Ganti oli</p>
-            <p><strong>Keterangan:</strong> Dilakukan secara berkala</p>
+            <p>
+              <strong>Keterangan:</strong>
+              Dilakukan secara berkala
+            </p>
           </article>
 
           <article class="kartu">
             <h3>Ban</h3>
             <p><strong>Perawatan:</strong> Cek tekanan</p>
-            <p><strong>Keterangan:</strong> Dicek sebelum digunakan</p>
+            <p>
+              <strong>Keterangan:</strong>
+              Dicek sebelum digunakan
+            </p>
           </article>
 
           <article class="kartu">
             <h3>Rem</h3>
             <p><strong>Perawatan:</strong> Cek kampas rem</p>
-            <p><strong>Keterangan:</strong> Memastikan rem masih aman</p>
+            <p>
+              <strong>Keterangan:</strong>
+              Memastikan rem masih aman
+            </p>
           </article>
         </div>
       </section>
